@@ -1,11 +1,22 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
-  // Renders the component to the virtual DOM
-  render(<App />);
-  // I can access elements from the DOMww by using the screen method
-  const linkElement = screen.getByText("Learn React");
-  // Assertion - they start with expect(argument) and are followed by a matcher that runs tests against expected argument
-  expect(linkElement).toBeInTheDocument();
+test('button has correct initial color and text', () => {
+  render(<App />)
+  const colorButton = screen.getByRole('button', {name: /Change to blue/i})
+
+  // expect the bg to be red
+  expect(colorButton).toHaveStyle({backgroundColor: 'red'})
+
+  // click button
+  fireEvent.click(colorButton);
+
+  // expect the bg to be blue after click
+  expect(colorButton).toHaveStyle({backgroundColor: "blue"});
+
+  // expect the text to change after click
+  expect(colorButton.textContent).toBe("Change to red")
 });
+
+
+
