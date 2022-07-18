@@ -1,3 +1,3 @@
 # Color Button
 
-React testing practice
+React testing practice with JEST
